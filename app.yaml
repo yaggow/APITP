@@ -5,7 +5,7 @@ api_version: 1
 
 handlers:
 - url: /.*
-  script: apitp.php
+  script: api.php
 
 env_variables:
   # Replace project, instance, database, user and password with the values obtained
