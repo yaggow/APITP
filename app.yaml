@@ -1,0 +1,15 @@
+application: apitp
+version: 1
+runtime: php55
+api_version: 1
+
+handlers:
+- url: /.*
+  script: apitp.php
+
+env_variables:
+  # Replace project, instance, database, user and password with the values obtained
+  # when configuring your Cloud SQL instance.
+  MYSQL_DSN: mysql:unix_socket=/cloudsql/zeta-serenity-145819:tpbd;dbname=bdtp
+  MYSQL_USER: tpbdAdmin
+  MYSQL_PASSWORD: 'Tpbd2016@!'

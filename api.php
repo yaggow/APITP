@@ -6,7 +6,18 @@ $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 $input = json_decode(file_get_contents('php://input'),true);
  
 // connect to the mysql database
-$link = mysqli_connect('173.194.86.150', 'tpbdAdmin', 'Tpbd2016@!', 'bdtp');
+
+$dsn = getenv('MYSQL_DSN');
+$user = getenv('MYSQL_USER');
+$password = getenv('MYSQL_PASSWORD');
+if (!isset($dsn, $user) || false === $password) {
+  throw new Exception('Set MYSQL_DSN, MYSQL_USER, and MYSQL_PASSWORD environment variables');
+}
+
+$link = new PDO($dsn, $user, $password);
+
+
+ //= mysqli_connect('173.194.86.150', 'tpbdAdmin', 'Tpbd2016@!', 'bdtp');
 mysqli_set_charset($link,'utf8');
  
 // retrieve the table and key from the path
